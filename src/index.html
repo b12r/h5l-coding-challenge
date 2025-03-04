@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coding Challenge</title>
+    <link href="/lib/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .mo-marked-search-term {
+            color: #f52121;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sendungsübersicht</h1>
+        <form>
+            <div class="form-group">
+                <label for="mo-search-input" style="margin-bottom: .5rem">Suche nach Empfänger</label>
+                <input id="mo-search-input" class="form-control" type="text" placeholder="Name / Adresse / E-Mail">
+            </div>
+        </form>
+        <div><span id="mo-badge" class="badge bg-primary"></span></div>
+        <div>
+            <table id="mo-table" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sendungsnummer</th>
+                        <th scope="col">Versender<br>Name / Adresse / E-Mail</th>
+                        <th scope="col">Empfänger<br>Name / Adresse / E-Mail</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/lib/bootstrap.bundle.min.js"></script>
+    <script src="/lib/jquery-3.7.1.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
