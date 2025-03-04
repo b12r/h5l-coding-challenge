@@ -95,9 +95,9 @@ function populateTable(tableModel, searchTerms) {
                 <td class="font-monospace">${row.trackingId}</td> +
                 <td>${row.senderName}<br>${row.senderAddress}<br>${row.senderEmail}</td>
                 <td>
-                    <span class="mo-mark-search-terms">${row.recipientName}</span><br>
-                    <span class="mo-mark-search-terms">${row.recipientAddress}</span><br>
-                    <span class="mo-mark-search-terms">${row.recipientEmail}</span></td>
+                    <span class="mo-highlight-search-terms">${row.recipientName}</span><br>
+                    <span class="mo-highlight-search-terms">${row.recipientAddress}</span><br>
+                    <span class="mo-highlight-search-terms">${row.recipientEmail}</span></td>
                 <td>${row.status}</td>
                 <td><button type="button" class="mo-button-investigate btn btn-primary" data-tracking-id="${row.trackingId}">Nachforschen</button></td>
             </tr>
@@ -109,7 +109,8 @@ function populateTable(tableModel, searchTerms) {
             const trackingId = $(button).attr('data-tracking-id');
             $.post(API_ENDPOINT_INVESTIGATE, { trackingId: trackingId } )
                 .done(() => {
-                    $(button).addClass('disabled');
+                    $(button).text('Eingeleitet');
+                    $(button).addClass('disabled btn-success').removeClass('btn-primary');
                 })
                 .fail((jqXHR, textStatus, errorThrown) => {
                     console.log(textStatus, errorThrown);
@@ -118,14 +119,13 @@ function populateTable(tableModel, searchTerms) {
         });
     });
     if (searchTerms !== undefined) {
-        const elements = tableBody.find('.mo-mark-search-terms');
-        console.log(searchTerms);
+        const elements = tableBody.find('.mo-highlight-search-terms');
         elements.each((index, element) => {
             const text = $(element).text();
-            const markedText= text.replace(new RegExp(searchTerms.join('|'), 'gi'), (match) => {
-                return `<span class="mo-marked-search-term">${match}</span>`
+            const highlightedText= text.replace(new RegExp(searchTerms.join('|'), 'gi'), (match) => {
+                return `<span class="mo-highlighted-search-term">${match}</span>`
             });
-            $(element).html(markedText);
+            $(element).html(highlightedText);
         });
     }
 }
